@@ -36,7 +36,7 @@ class UserDetailApiView(APIView):
         user_instance=self.get_object(user_id)
         if not user_instance:
             return Response(
-                {"res":"Object not found with id {}".format(user_id)}
+                {"res":"[GET] Object not found with id {}".format(user_id)},status=status.HTTP_404_NOT_FOUND
             )
         serializer=UserSerializer(user_instance)
         return Response(serializer.data,status=status.HTTP_200_OK)
@@ -45,7 +45,7 @@ class UserDetailApiView(APIView):
         user_instance=self.get_object(user_id)
         if not user_instance:
             return Response(
-                {"res":"Object not found with id {}".format(user_id)}
+                {"res":"[PUT] Object not found with id {}".format(user_id)},status=status.HTTP_404_NOT_FOUND
             )
         data={
             'name':request.data.get('name'),
@@ -62,7 +62,7 @@ class UserDetailApiView(APIView):
         user_instance=self.get_object(user_id)
         if not user_instance:
             return Response(
-                {"res":"Object not found with id {}".format(user_id)}
+                {"res":"{DEL] Object not found with id {}".format(user_id)}
             )
         
         user_instance.delete()
